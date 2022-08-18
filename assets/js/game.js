@@ -8,10 +8,9 @@ var enemyHealth = 50;
 var enemyAttack = 12;
 
 var fight = function(enemyName) {
+    while(enemyHealth > 0) {
 // Alert players that they are starting the round
-    window.alert("The fight has begun!");
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
-    console.log(promptFight);
     if (promptFight === "FIGHT" || promptFight === "fight") {
         // remove enemy's health by subtracting playerAttack from enemyHealth
         enemyHealth = enemyHealth - playerAttack;
@@ -29,7 +28,7 @@ var fight = function(enemyName) {
         playerHealth = playerHealth - enemyAttack;
         // Log a resulting message to the console so we know that it worked.
         console.log(
-            enemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+            enemyNames[i] + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
         );
         // check player's health
         if (playerHealth <= 0) {
@@ -57,7 +56,10 @@ var fight = function(enemyName) {
         fight();
     }
 }
+}
 
 for(var i = 0; i < enemyNames.length; i++) {
-    fight(enemyNames[i]);
+    var pickedEnemyName = enemyNames[i];
+    enemyHealth = 50;
+    fight(pickedEnemyName);
 }
